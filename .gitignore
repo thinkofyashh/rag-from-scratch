@@ -17,6 +17,14 @@ venv/
 build/
 dist/
 
+# Node.js and Next.js
+node_modules/
+.next/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
 # Local data and generated artifacts
 data/raw/
 data/private/
