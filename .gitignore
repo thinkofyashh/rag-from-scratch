@@ -1,0 +1,32 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Local data and generated artifacts
+data/raw/
+data/private/
+artifacts/
+*.db
+*.sqlite
+*.sqlite3
+*.index
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
