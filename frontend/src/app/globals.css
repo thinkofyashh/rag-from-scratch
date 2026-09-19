@@ -1,5 +1,23 @@
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
+  --canvas: #f3f0e7;
+  --surface: #fbfaf5;
+  --surface-raised: #ffffff;
+  --surface-muted: #eae7dc;
+  --ink: #1b1e19;
+  --ink-soft: #62665d;
+  --line: #cfcec4;
+  --line-strong: #96998f;
+  --accent: #d8ef66;
+  --accent-strong: #b6d72f;
+  --accent-ink: #1a250d;
+  --violet: #735bd6;
+  --violet-soft: #ece7ff;
+  --coral: #ef755e;
+  --success: #3c8a62;
+  --warning: #bd762c;
+  --danger: #bd4a3d;
+  --shadow: 0 22px 70px rgb(41 43 35 / 10%);
   font-family:
     Inter,
     ui-sans-serif,
@@ -10,6 +28,28 @@
     sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #11130f;
+  --surface: #181b16;
+  --surface-raised: #20231d;
+  --surface-muted: #292c25;
+  --ink: #f3f3e9;
+  --ink-soft: #adb2a7;
+  --line: #383c34;
+  --line-strong: #60665a;
+  --accent: #cae657;
+  --accent-strong: #afcf3d;
+  --accent-ink: #17200d;
+  --violet: #9a86ef;
+  --violet-soft: #29233f;
+  --coral: #f18b76;
+  --success: #70bd91;
+  --warning: #e3a85f;
+  --danger: #eb8175;
+  --shadow: 0 28px 80px rgb(0 0 0 / 35%);
 }
 
 * {
@@ -23,8 +63,11 @@ body {
 }
 
 body {
-  background: #f5f3ec;
-  color: #20231f;
+  background: var(--canvas);
+  color: var(--ink);
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
 }
 
 button,
@@ -44,6 +87,105 @@ a {
 }
 
 ::selection {
-  background: #d8f06b;
-  color: #172012;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--violet) 70%, transparent);
+  outline-offset: 3px;
+}
+
+.routeState {
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  background:
+    radial-gradient(
+      circle at center,
+      color-mix(in srgb, var(--accent) 26%, transparent),
+      transparent 25rem
+    ),
+    var(--canvas);
+  text-align: center;
+}
+
+.routeStateMark {
+  display: grid;
+  min-width: 54px;
+  height: 54px;
+  padding: 0 12px;
+  place-items: center;
+  border: 1px solid var(--ink);
+  border-radius: 15px 5px 15px 5px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 5px 5px 0 var(--ink);
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.routeStateMarkLoading {
+  animation: routePulse 1.4s ease-in-out infinite alternate;
+}
+
+.routeStateEyebrow {
+  margin: 26px 0 0 !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px !important;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.routeState h1 {
+  max-width: 680px;
+  margin: 12px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 6vw, 68px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.routeState p {
+  max-width: 480px;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.routeStateAction {
+  margin-top: 24px;
+  padding: 11px 16px;
+  border: 1px solid var(--ink);
+  border-radius: 9px;
+  background: var(--ink);
+  color: var(--surface);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes routePulse {
+  to {
+    transform: translateY(-5px) rotate(-2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
